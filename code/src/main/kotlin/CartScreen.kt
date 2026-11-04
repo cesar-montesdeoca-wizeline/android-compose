@@ -69,14 +69,6 @@ import com.example.androidaccessibilityauditor.ui.theme.LabelSubtitle
 import com.example.androidaccessibilityauditor.ui.theme.LabelSubtitleSemibold
 import com.example.androidaccessibilityauditor.ui.theme.Orange
 
-// ── Checkbox icon resource IDs ───────────────────────────────────────────────
-// Two-state checkbox: filled (selected) vs outlined (unselected).
-// R.drawable.ic_checkbox_filled  → Orange fill / white check
-// R.drawable.ic_checkbox_outline → white fill / Orange outline
-// These are vector drawables bundled with material-icons-extended.
-// We use painter resources referencing the Material checkbox icons via the
-// Icons API converted to ImageVector and then to Painter below.
-
 // ────────────────────────────────────────────────────────────────────────────
 // Divider
 // ────────────────────────────────────────────────────────────────────────────
