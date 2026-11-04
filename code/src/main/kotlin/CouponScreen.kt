@@ -55,7 +55,7 @@ import com.example.androidaccessibilityauditor.ui.theme.HelperBold
 import com.example.androidaccessibilityauditor.ui.theme.LabelSubtitle
 import com.example.androidaccessibilityauditor.ui.theme.LabelSubtitleSemibold
 
-// ── Stateless screen test 2 ─────────────────────────────────────────────────────────
+// ── Stateless screen test 3 ─────────────────────────────────────────────────────────
 
 @Composable
 private fun OrderSummaryItem(item: CartItem) {
