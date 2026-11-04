@@ -55,7 +55,7 @@ import com.example.androidaccessibilityauditor.ui.theme.HelperBold
 import com.example.androidaccessibilityauditor.ui.theme.LabelSubtitle
 import com.example.androidaccessibilityauditor.ui.theme.LabelSubtitleSemibold
 
-// ── Stateless screen test 2 ─────────────────────────────────────────────────────────
+// ── Stateless screen ─────────────────────────────────
 
 @Composable
 private fun OrderSummaryItem(item: CartItem) {
@@ -73,21 +73,19 @@ private fun OrderSummaryItem(item: CartItem) {
         Spacer(modifier = Modifier.width(12.dp))
 
         Column(modifier = Modifier.weight(1f)) {
-            // Seller
             Text(
                 text = stringResource(R.string.cart_seller),
                 style = LabelSubtitle,
                 color = GSVCTextDisable,
             )
             Spacer(modifier = Modifier.height(4.dp))
-            // Product name
             Text(
                 text = item.product.name,
                 style = BodySmall,
                 color = GSVCTextPrimary,
             )
             Spacer(modifier = Modifier.height(2.dp))
-            // SKU
+
             Text(
                 text = stringResource(R.string.cart_sku_format, item.product.sku),
                 style = LabelSubtitle,
@@ -98,7 +96,6 @@ private fun OrderSummaryItem(item: CartItem) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                // Quantity badge
                 Text(
                     text = "Cant. ${item.quantity}",
                     style = HelperBold,
@@ -152,10 +149,6 @@ private fun OrderSummaryItem(item: CartItem) {
         }
     }
 }
-
-// ────────────────────────────────────────────────────────────────────────────
-// Card 2 — Coupon
-// ────────────────────────────────────────────────────────────────────────────
 
 @Composable
 private fun CouponCard(
