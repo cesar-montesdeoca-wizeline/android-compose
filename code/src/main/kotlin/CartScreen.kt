@@ -69,39 +69,100 @@ import com.example.androidaccessibilityauditor.ui.theme.LabelSubtitle
 import com.example.androidaccessibilityauditor.ui.theme.LabelSubtitleSemibold
 import com.example.androidaccessibilityauditor.ui.theme.Orange
 
-// ────────────────────────────────────────────────────────────────────────────
-// Divider
-// ────────────────────────────────────────────────────────────────────────────
+// ── Checkbox icon resource IDs ───────────────────────────────────────────────
+// Two-state checkbox: filled (selected) vs outlined (unselected).
+// R.drawable.ic_checkbox_filled  → Orange fill / white check
+// R.drawable.ic_checkbox_outline → white fill / Orange outline
+// These are vector drawables bundled with material-icons-extended.
+// We use painter resources referencing the Material checkbox icons via the
+// Icons API converted to ImageVector and then to Painter below.
 
 @Composable
-private fun CartDivider() {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(1.dp)
-            .background(GSVCBorderDivider),
-    )
-}
+fun CartScreen(
+    onNavigateBack: () -> Unit,
+    onNavigateToCoupon: () -> Unit = {},
+    cartViewModel: CartViewModel = viewModel(factory = CartViewModel.Factory),
+) {
+    val uiState by cartViewModel.uiState.collectAsStateWithLifecycle()
 
-// ────────────────────────────────────────────────────────────────────────────
-// Empty state
-// ────────────────────────────────────────────────────────────────────────────
-
-@Composable
-private fun EmptyCartContent() {
-    Box(
+    Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 48.dp),
-        contentAlignment = Alignment.Center,
+            .fillMaxSize()
+            .statusBarsPadding()
+            .background(GSVCBodyContainer),
     ) {
-        Text(
-            text = stringResource(R.string.cart_empty),
-            style = BodyBold,
-            color = GSVCTextPrimary,
+        // ── Toolbar ────────────────────────────────────────────────────────
+        CartToolbar(onNavigateBack = onNavigateBack)
+
+        // ── Select All row ─────────────────────────────────────────────────
+        SelectAllRow(
+            isChecked = uiState.isSelectAllChecked,
+            onToggle = { cartViewModel.onAction(CartAction.ToggleSelectAll) },
+        )
+
+        // ── Divider ────────────────────────────────────────────────────────
+        CartDivider()
+
+        // ── Scrollable body ────────────────────────────────────────────────
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .verticalScroll(rememberScrollState())
+                .background(GSVCBodyContainer)
+                .padding(16.dp),
+        ) {
+            if (uiState.isEmpty) {
+                EmptyCartContent()
+            } else {
+                CartBodyContent(
+                    uiState = uiState,
+                    onAction = { cartViewModel.onAction(it) },
+                    onNavigateToCoupon = onNavigateToCoupon,
+                )
+            }
+        }
+
+        // ── Bottom summary area ────────────────────────────────────────────
+        BottomSummaryArea(
+            total = uiState.total,
+            subtotal = uiState.subtotal,
+            selectedUnitCount = uiState.selectedUnitCount,
+            onContinue = { /* No action defined */ },
         )
     }
 }
+
+// ────────────────────────────────────────────────────────────────────────────
+// Toolbar
+// ────────────────────────────────────────────────────────────────────────────
+
+@Preview
+@Composable
+private fun CartToolbar(onNavigateBack: () -> Unit = {}) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(GSVCHeadSecondary)
+            .padding(end = 16.dp)
+            .padding(top = 4.dp, bottom = 12.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        IconButton(onClick = onNavigateBack) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = stringResource(R.string.cd_navigate_back),
+                tint = Orange,
+            )
+        }
+        Text(
+            text = stringResource(R.string.cart_title),
+            style = H4,
+            color = GSVCTextPrimary,
+            modifier = Modifier.padding(start = 16.dp),
+        )
+    }
+}
+
 
 // ────────────────────────────────────────────────────────────────────────────
 // Cart body content
@@ -344,5 +405,4 @@ private fun ProductItemBottomSection(
 
         }
     }
-
 }
