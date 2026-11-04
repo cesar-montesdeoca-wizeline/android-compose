@@ -8,5 +8,5 @@ on:
 
 jobs:
   run-audit:
-    uses: cesar-montesdeoca-wizeline/mobile-a11y-guardian/.github/workflows/reusable_audit.yml@main
+    uses: cesar-montesdeoca-wizeline/mobile-a11y-guardian/.github/workflows/reusable_audit.yml@dev
     secrets: inherit
