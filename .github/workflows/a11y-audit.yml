@@ -1,0 +1,12 @@
+name: Accessibility CI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - '**.kt'
+
+jobs:
+  run-audit:
+    uses: cesar-montesdeoca-wizeline/mobile-a11y-guardian/.github/workflows/reusable_audit.yml@main
+    secrets: inherit
