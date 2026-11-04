@@ -55,30 +55,6 @@ import com.example.androidaccessibilityauditor.ui.theme.HelperBold
 import com.example.androidaccessibilityauditor.ui.theme.LabelSubtitle
 import com.example.androidaccessibilityauditor.ui.theme.LabelSubtitleSemibold
 
-// ── Route composable ─────────────────────────────────────────────────────────
-
-/**
- * Route entry point for the Coupon / Checkout screen.
- *
- * Obtains the Hilt-managed [CouponViewModel], collects its state lifecycle-
- * aware, and delegates all rendering to the stateless [CouponScreen].
- * Navigation callbacks are passed in from [AppNavigation] so the ViewModel
- * is not coupled to the navigation layer.
- */
-@Composable
-fun CouponRoute(
-    onNavigateBack: () -> Unit,
-) {
-    val viewModel: CouponViewModel = hiltViewModel()
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-
-    CouponScreen(
-        uiState = uiState,
-        onAction = viewModel::onAction,
-        onNavigateBack = onNavigateBack,
-    )
-}
-
 // ── Stateless screen ─────────────────────────────────────────────────────────
 
 @Composable
@@ -258,57 +234,6 @@ private fun CouponCard(
                     )
                 }
             }
-        }
-    }
-}
-
-// ────────────────────────────────────────────────────────────────────────────
-// Card 3 — Payment Breakdown
-// ────────────────────────────────────────────────────────────────────────────
-
-@Composable
-private fun PaymentBreakdownCard(uiState: CouponUiState) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = GSVCSmall,
-        colors = CardDefaults.cardColors(containerColor = GSVCSurfaceSecondary),
-        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
-    ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            // Centered title
-            Text(
-                text = stringResource(R.string.coupon_breakdown_title),
-                style = BodySmall,
-                color = GSVCTextPrimary,
-                modifier = Modifier.fillMaxWidth(),
-                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
-            )
-
-            Spacer(modifier = Modifier.height(12.dp))
-
-            // Subtotal row
-            BreakdownRow(
-                label = stringResource(R.string.coupon_breakdown_subtotal),
-                value = stringResource(R.string.cart_total_format, uiState.subtotal.toInt()),
-            )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            // Shipping row
-            BreakdownRow(
-                label = stringResource(R.string.coupon_breakdown_shipping),
-                value = stringResource(R.string.coupon_shipping_cost_default),
-            )
-
-            Spacer(modifier = Modifier.height(12.dp))
-            HorizontalDivider()
-            Spacer(modifier = Modifier.height(12.dp))
-
-            // Total row
-            BreakdownRow(
-                label = stringResource(R.string.coupon_breakdown_total),
-                value = stringResource(R.string.cart_total_format, uiState.total.toInt()),
-            )
         }
     }
 }
