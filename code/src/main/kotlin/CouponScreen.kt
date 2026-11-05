@@ -55,7 +55,7 @@ import com.example.androidaccessibilityauditor.ui.theme.HelperBold
 import com.example.androidaccessibilityauditor.ui.theme.LabelSubtitle
 import com.example.androidaccessibilityauditor.ui.theme.LabelSubtitleSemibold
 
-// ── Stateless screen ───────────────────────────────────────────────────
+// ── Stateless screen ─────────────────────────────────
 
 @Composable
 private fun OrderSummaryItem(item: CartItem) {
@@ -85,7 +85,7 @@ private fun OrderSummaryItem(item: CartItem) {
                 color = GSVCTextPrimary,
             )
             Spacer(modifier = Modifier.height(2.dp))
-            // SKU
+
             Text(
                 text = stringResource(R.string.cart_sku_format, item.product.sku),
                 style = LabelSubtitle,
@@ -96,7 +96,6 @@ private fun OrderSummaryItem(item: CartItem) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                // Quantity badge
                 Text(
                     text = "Cant. ${item.quantity}",
                     style = HelperBold,
