@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">AndroidSampleApp</string>
+
+    <!-- Accessibility content descriptions -->
+    <string name="cd_show_password">Show password</string>
+    <string name="cd_hide_password">Hide password</string>
+    <string name="cd_navigate_back">Navigate back</string>
+    <string name="cd_add_to_cart">Add %1$s to cart</string>
+
+    <!-- Cart screen strings -->
+    <string name="cart_title">Carrito</string>
+    <string name="cart_select_all">Seleccionar todo</string>
+    <string name="cart_section_heading">Productos con promo al pagar con Préstamo de Banco Azteca</string>
+    <string name="cart_promo_label_prefix">Promo exclusiva</string>
+    <string name="cart_promo_label_suffix">Promo 1, 2, 3</string>
+    <string name="cart_seller">Vendido por Elektra</string>
+    <string name="cart_sku_format">SKU: %1$s</string>
+    <string name="cart_loan_detail">$%1$s durante %2$s semanas</string>
+    <string name="cart_store_pickup">Recoger en tienda física</string>
+    <string name="cart_coupon">Añadir cupón</string>
+    <string name="cart_warranty">Garantía extendida</string>
+    <string name="cart_total_format">$%1$s</string>
+    <string name="cart_count_format">(%1$s productos)</string>
+    <string name="cart_continue">Continuar</string>
+    <string name="cart_empty">Tu carrito está vacío</string>
+
+    <!-- Coupon / checkout screen strings -->
+    <string name="coupon_toolbar_title">Realizar compra</string>
+    <string name="coupon_section_order">Orden de compra</string>
+    <string name="coupon_prefilled_code">NOVI0326</string>
+    <string name="coupon_button_redeem">Redimir</string>
+    <string name="coupon_applied_label">Cupón aplicado: -50% de descuento</string>
+    <string name="coupon_breakdown_title">Detalle de pago</string>
+    <string name="coupon_breakdown_subtotal">Subtotal</string>
+    <string name="coupon_breakdown_shipping">Envío</string>
+    <string name="coupon_breakdown_total">Total</string>
+    <string name="coupon_shipping_cost_default">$0.00</string>
+</resources>
