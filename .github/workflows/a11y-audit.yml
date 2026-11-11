@@ -5,6 +5,8 @@ on:
     types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - '**.kt'
+    with:
+      use_compact_skill: false
 
 jobs:
   run-audit:
